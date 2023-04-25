@@ -1,0 +1,67 @@
+        <!DOCTYPE html>
+        <!--=== Coding by CodingLab | www.codinglabweb.com === -->
+        <html xmlns:th="http://www.thymeleaf.org"
+              lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <!----======== CSS ======== -->
+            <link rel="stylesheet" th:href="@{/css/admissionStyle.css}" />
+
+            <!----===== Iconscout CSS ===== -->
+            <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+            <!--<title>Responsive Regisration Form </title>-->
+        </head>
+        <body>
+        <div class="container">
+            <header>Admission Form</header>
+
+            <form action="#" th:action="@{/students/save}"
+                  th:object="${student}" method="post" enctype="multipart/form-data">
+
+                <div class="form first">
+                    <div class="details personal">
+                        <span class="title">Personal Details</span>
+
+                        <div class="fields">
+                            <div class="input-field">
+                                <label>Full Name</label>
+                                <input type="text" placeholder="Enter your name"
+                                       th:field="*{fullNames}" required>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Email</label>
+                                <input type="email" placeholder="Enter your email"
+                                       th:field="*{email}" required>
+                            </div>
+
+                         <div class="input-field">
+                              <label>Add Cv</label>
+                               <input type="file" name="files" id="files" accept = "application/pdf" required/>
+                         </div>
+
+                            <div class="input-field">
+                                <label>Add Passport Image</label>
+                                <input type="file" name="pic" id="pic" accept=".jpg,.jpeg,.png" required/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="buttons">
+                        <button class="sumbit" type="submit">
+                            <span class="btnText">Submit</span>
+                            <i class="uil uil-navigator"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <!--<script th:src="@{/js/admission.js}"></script>-->
+        </body>
+        </html>

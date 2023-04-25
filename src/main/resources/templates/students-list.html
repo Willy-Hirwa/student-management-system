@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>students-list</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+
+    <h3>Students List</h3>
+    <hr>
+    <!-- Add a button-->
+    <a th:href="@{/students/admission}"
+       class="btn btn-primary btn-sm mb-3">
+        Add Student
+    </a>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Cv</th>
+            <th>Image</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="tempStudent : ${theStudents}">
+
+            <td th:text="${tempStudent.fullNames}" />
+            <td th:text="${tempStudent.email}" />
+            <td><a th:href="@{'/students/view/' + ${tempStudent.filename}}" th:text="${tempStudent.filename}"></a></td>
+            <td>
+<!--                <img th:src="/images/ + ${tempStudent.ImageName}" th:alt="image"/>-->
+<!--                <img class="img-fluid" th:src="@{/students/images/{filename}(filename=${tempStudent.ImageName})}" th:alt="${file}"/>-->
+                <img class="img-fluid" th:src="@{/students/images/{filename}(filename=${tempStudent.ImageName})}" th:alt="${file}" style="max-width:100%; max-height:100%;"/>
+            </td>
+            <td>
+                <a th:href="@{/students/showFormForUpdate(studentId=${tempStudent.id})}"
+                   class="btn btn-info btn-sm">
+                    Update
+                </a>
+
+                <!--Add "delete" button-->
+                <a th:href="@{/students/deleteStudent(studentId=${tempStudent.id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>
